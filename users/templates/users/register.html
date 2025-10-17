@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Register</h3>
+  <form method="POST">
+    {% csrf_token %}
+    <!-- userame Field -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" id="username"
+               class="form-control bg-dark text-light border-secondary"
+               value="{{ form.username.value|default_if_none:'' }}" required>
+        {% if form.username.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.username.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    
+    <!-- Email Field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">E-Mail</label>
+        <input type="Email" name="email" id="email"
+               class="form-control bg-dark text-light border-secondary"
+               value="{{ form.email.value|default_if_none:'' }}" required>
+        {% if form.email.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.email.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+    <!-- First Password Field -->
+      <div class="mb-3">
+        <label for="password1" class="form-label">Password</label>
+        <input type="Password" name="password1" id="password"
+               class="form-control bg-dark text-light border-secondary"
+               value="{{ form.password1.value|default_if_none:'' }}" required>
+        {% if form.password1.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.password1.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+    <!-- Password Comfirmation Field -->
+      <div class="mb-3">
+        <label for="password2" class="form-label">Confirm Password</label>
+        <input type="Password" name="password2" id="password"
+               class="form-control bg-dark text-light border-secondary"
+               value="{{ form.password2.value|default_if_none:'' }}" required>
+        {% if form.password2.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.password2.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    <button type="submit" class="btn btn-outline-light  w-100">Sign Up</button>
+  </form>
+  <p class="text-center mt-3">
+    Already have an account? <a href="{% url 'login' %}">Login</a>
+  </p>
+</div>
+{% endblock %}

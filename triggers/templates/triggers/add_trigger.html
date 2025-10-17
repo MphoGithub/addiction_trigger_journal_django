@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5" style="max-width: 600px;">
+
+  <div class="card bg-dark text-light p-4 shadow-lg">
+
+    <!-- Heading -->
+    <h3 class="text-center mb-4">
+      {% if edit %}
+        Edit Trigger
+      {% else %}
+        Add New Trigger
+      {% endif %}
+    </h3>
+
+    <!-- Success/Error messages -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Form -->
+    <form method="POST">
+      {% csrf_token %}
+
+      <!-- Name Field -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" name="name" id="name"
+               class="form-control bg-dark text-light border-secondary"
+               value="{{ form.name.value|default_if_none:'' }}" required>
+        {% if form.name.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.name.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Description Field -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description" id="description" rows="4"
+                  class="form-control bg-dark text-light border-secondary" required>{{ form.description.value|default_if_none:'' }}</textarea>
+        {% if form.description.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.description.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="category" id="category"
+                class="form-select bg-dark text-light border-secondary" required>
+          <option value="">Select a category</option>
+          {% for val, label in form.fields.category.choices %}
+            <option value="{{ val }}" {% if form.category.value == val %}selected{% endif %}>
+              {{ label }}
+            </option>
+          {% endfor %}
+        </select>
+        {% if form.category.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.category.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Coping Strategy Field -->
+      <div class="mb-3">
+        <label for="coping_strategy" class="form-label">Coping Strategy</label>
+        <textarea name="coping_strategy" id="coping_strategy" rows="3"
+                  class="form-control bg-dark text-light border-secondary">{{ form.coping_strategy.value|default_if_none:'' }}</textarea>
+        {% if form.coping_strategy.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.coping_strategy.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-light mt-3 w-50">
+          {% if edit %}
+            Update Trigger
+          {% else %}
+            Save Trigger
+          {% endif %}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

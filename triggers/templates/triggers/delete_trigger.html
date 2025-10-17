@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+  <div class="card bg-dark text-light p-4 shadow">
+    <h3 class="text-center mb-4">Delete Trigger</h3>
+
+    <p>Are you sure you want to delete the trigger "<strong>{{ trigger.name }}</strong>"?</p>
+
+    <div class="mb-2">
+      <label class="form-label"><strong>Category:</strong></label>
+      <p>{{ trigger.category }}</p>
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label"><strong>Description:</strong></label>
+      <p>{{ trigger.description }}</p>
+    </div>
+
+    {% if trigger.coping_strategy %}
+    <div class="mb-2">
+      <label class="form-label"><strong>Coping Strategy:</strong></label>
+      <p>{{ trigger.coping_strategy }}</p>
+    </div>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'view_triggers' %}" class="btn btn-light">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

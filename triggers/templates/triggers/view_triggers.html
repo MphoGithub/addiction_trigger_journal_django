@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4 text-white">My Triggers</h2>
+
+  {% if triggers %}
+  <div class="table-responsive">
+    <table class="table table-dark table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Coping Strategy</th>
+          <th>Date Logged</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for trigger in triggers %}
+        <tr>
+          <td>{{ trigger.name }}</td>
+          <td>{{ trigger.category }}</td>
+          <td>{{ trigger.description }}</td>
+          <td>{{ trigger.coping_strategy|default:"-" }}</td>
+          <td>{{ trigger.date_logged|date:"M d, Y H:i" }}</td>
+          <td>
+            <a href="{% url 'edit_trigger' trigger.id %}" class="btn btn-sm btn-outline-light">Edit</a>
+            <a href="{% url 'delete_trigger' trigger.id %}" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-center mt-4 text-white">
+    You haven’t logged any triggers yet. 
+    <a href="{% url 'add_trigger' %}" class="text-decoration-underline text-white">Add your first trigger</a>.
+  </p>
+  {% endif %}
+</div>
+{% endblock %}

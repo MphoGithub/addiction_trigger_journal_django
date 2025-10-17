@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5" style="max-width: 400px;">
+  <h3 class="text-center mb-4">Login</h3>
+  <form method="POST">
+    {% csrf_token %}
+
+        {% if form.non_field_errors %}
+      <div class="text-danger small mb-2">
+        {% for error in form.non_field_errors %}
+          {{ error }}<br>
+        {% endfor %}
+      </div>
+    {% endif %}
+      <!-- Username Field -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" id="username"
+               class="form-control bg-dark text-light border-secondary"
+               value="{{ form.username.value|default_if_none:'' }}" required>
+        {% if form.username.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.username.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!--Password Field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="Password" name="password" id="password"
+               class="form-control bg-dark text-light border-secondary"
+               value="{{ form.password1.value|default_if_none:'' }}" required>
+        {% if form.password.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in form.password.errors %}
+              {{ error }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    <button type="submit" class="btn btn-outline-light  w-100">Login</button>
+  </form>
+  <p class="text-center mt-3">
+    Don’t have an account? <a href="{% url 'register' %}">Register</a>
+  </p>
+</div>
+{% endblock %}

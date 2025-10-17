@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container my-5">
+
+  <!-- Welcome Header -->
+  <div class="text-center mb-4">
+    <h1 class="fw-bold">Welcome to Your Trigger Journal App!</h1>
+    <p class="text-muted">A safe space for reflection, awareness, and growth.</p>
+  </div>
+
+  <!-- Banner Image -->
+  {% comment %} <div class="text-center mb-5"> 
+    <img src="{% static 'images/recovery_path.jpg' %}" class="img-fluid rounded shadow-sm" alt="Recovery path" style="max-height: 300px;">
+  </div>
+  {% endcomment %}
+
+  <!-- Introductory Cards -->
+  <div class="card bg-dark text-white shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <p>
+        Taking the first step toward understanding your addiction triggers
+        is a brave and crucial move—and this app is here to support you on
+        that journey. Recovery is not just about abstinence; it's about
+        building self-awareness and developing practical strategies to
+        navigate the complexities of daily life.
+      </p>
+    </div>
+    <div class="card-body border-top">
+      <p>
+        Triggers can be sneaky. They might be a sudden flash of stress, a familiar smell,
+        or a pattern you don't even realize you're repeating. By logging your experiences
+        and coping strategies, you’ll uncover patterns that help you respond with strength
+        instead of impulse.
+      </p>
+    </div>
+    <div class="card-body border-top">
+      <p>
+        Start by noting the “who, what, when, and where” of each challenging moment and how you felt afterward.
+        Over time, these reflections will become your personal roadmap—highlighting your challenges and your victories.
+      </p>
+    </div>
+    <h5 class="text-center pb-4">Let’s begin building a better tomorrow, one entry at a time.</h5>
+  </div>
+
+  <!-- Quick Navigation Buttons -->
+  <div class="text-center mt-4 p-4 bg-dark text-white rounded shadow">
+    {% if user.is_authenticated %}
+      <a href="{% url 'add_trigger' %}" class="btn btn-light m-2">Add New Trigger</a>
+      <a href="{% url 'view_triggers' %}" class="btn btn-outline-light m-2">View My Journal</a>
+    {% else %}
+      <a href="{% url 'register' %}" class="btn btn-light m-2">Get Started</a>
+      <a href="{% url 'login' %}" class="btn btn-outline-light m-2">Login</a>
+    {% endif %}
+</div>
+
+
+  <!-- Motivational Quote -->
+  <div class="card mt-5 bg-dark text-white text-center border-0 shadow-sm">
+    <div class="card-body">
+      <blockquote class="blockquote">
+        <p class="mb-0">"{{quote}}"</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Progress Summary for Logged-in Users -->
+  {% if user.is_authenticated %}
+  <div class="card mt-4 bg-dark text-white border-0 shadow-sm text-center">
+    <div class="card-body">
+      <h5>Hello, {{ user.username }}!</h5>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock content %}
