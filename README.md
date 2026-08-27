@@ -18,6 +18,16 @@ Triggers is a web app for recording addiction triggers and coping strategies. Ea
 + Bootstrap 5
 + python-dotenv
 
+## Setup
+
+1. Clone the repo and create a virtual environment
+2. `pip install -r requirements.txt`
+3. Install PostgreSQL if you don't have it, and create a database + user:
+4. Copy `.env.example` to `.env` and fill in your credentials
+5. `python manage.py migrate`
+6. `python manage.py makemigrations` 
+7. `python manage.py runserver`
+
 ## Disclaimer
 
 This app is a personal journaling tool. It is not medical advice and is not a substitute for professional support. If you or someone you know is struggling with addiction, please reach out to a qualified healthcare provider or local support service.
