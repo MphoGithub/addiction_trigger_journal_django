@@ -4,26 +4,12 @@ from .models import Trigger
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import TriggerForm
+from .quotes import QUOTES
 
 # Create your views here.
 def index(request):
-   quotes = [
-       #Dr Gabor Mate Quotes
-        """Not all addictions are rooted in abuse or trauma, 
-        but I do believe they can all be traced to painful experience. 
-        A hurt is at the centre of all addictive behaviours. 
-        It is present in the gambler, the Internet addict, 
-        the compulsive shopper and the workaholic. 
-        The wound may not be as deep and the ache not as excruciating, and it may even be entirely hidden—but it’s there. As we’ll see, the effects of early stress or adverse experiences directly shape both the psychology and the 
-        neurobiology of addiction in the brain.- Dr Gabor Mate""",
-        """It is impossible to understand addiction 
-        without asking what relief the addict finds, 
-        or hopes to find, in the drug or the addictive behaviour.- Dr Gabor Mate""",
-        "Passion creates, addiction consumes.- Dr Gabor Mate",  
-        
-   ]
    
-   quote = random.choice(quotes)
+   quote = random.choice(QUOTES)
    return render(request,'triggers/index.html',{'quote':quote})
 
 @login_required
