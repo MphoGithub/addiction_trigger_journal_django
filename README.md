@@ -2,6 +2,11 @@
 
 Triggers is a web app for recording addiction triggers and coping strategies. Each user has their own journal which they can use to track what happened, how they felt and what helped.
 
+## Live Demo
+https://addiction-trigger-journal.onrender.com
+
+*Note: hosted on Render's free tier — the app spins down after periods of inactivity, so the first load may take 30-50 seconds.*
+
 ## Features
 
 + **User accounts** — Register, log in, and log out. Trigger entries are private to each user.
