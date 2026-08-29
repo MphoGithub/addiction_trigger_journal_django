@@ -31,9 +31,12 @@ https://addiction-trigger-journal.onrender.com
 4. Copy `.env.example` to `.env` and fill in your credentials
 5. Generate a secret key with python -c "from django.core.management.utils import get_random_secret_key;
    print(get_random_secret_key())" and add it to your .env
-7. `python manage.py migrate`
-8. `python manage.py makemigrations` 
-9. `python manage.py runserver`
+6. `python manage.py migrate`
+7. `python manage.py makemigrations` 
+8. `python manage.py runserver`
+
+## Future Improvements
+- Improve UI
 
 ## Disclaimer
 
